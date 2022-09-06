@@ -1,15 +1,15 @@
-const roleModel = require("../model/role-model")
+const houseModel = require("../model/house-model")
 
 
-//Add Role
-module.exports.AddRole = function(req,res){
+//Add house
+module.exports.AddHouse = function(req,res){
 
-        console.log( req.body.RoleName );
-        let Role = new roleModel({
-            RoleName: req.body.RoleName 
+        console.log( req.body.houseDetails );
+        let House = new houseModel({
+            houseDetails: req.body.houseDetails 
         })
 
-        Role.save(function(err,data ){
+        House.save(function(err,data ){
             if(err){
                 res.json({
                     msg:"SMW",
@@ -18,7 +18,7 @@ module.exports.AddRole = function(req,res){
                 })
             }else{
                 res.json({
-                    msg:"Role Added",
+                    msg:"House Added",
                     Status:200,
                     data:data
                 })
@@ -26,10 +26,10 @@ module.exports.AddRole = function(req,res){
         })
 }
 
-//Get All Role
-module.exports.getAllRoles = function(req,res){
+//Get All House
+module.exports.getAllHouse= function(req,res){
 
-        roleModel.find(function(err,data){
+    houseModel.find().populate("User").exec(function(err,data){
 
                 if(err){
                         res.json({
@@ -39,7 +39,7 @@ module.exports.getAllRoles = function(req,res){
                         })
                 }else{
                         res.json({
-                            msg:"Ret...",
+                            msg:"house Ret...",
                             status:200,
                             data:data
                         })
@@ -47,13 +47,13 @@ module.exports.getAllRoles = function(req,res){
         })
 }
 
-//Role Update
-module.exports.UpdateRole = function(req,res){
+//House Update
+module.exports.UpdateHouse = function(req,res){
 
-    let RoleName = req.body.RoleName
-    let RoleId = req.body.RoleId
+    let houseDetails = req.body.houseDetails
+    let HouseId = req.body.HouseId
 
-    roleModel.updateOne({_id:RoleId},{RoleName:RoleName},function(err,data){
+    houseModel.updateOne({_id:HouseId},{houseDetails:houseDetails},function(err,data){
         if(err){
             res.json({
                 msg:"SMW",
@@ -62,7 +62,7 @@ module.exports.UpdateRole = function(req,res){
             })
         }else{
             res.json({
-                msg:"Role Updated",
+                msg:"House Updated",
                 status:200,
                 data:data
 
@@ -71,11 +71,11 @@ module.exports.UpdateRole = function(req,res){
     })
 }
 
-//Role Delete
-module.exports.DeleteRole = function(req,res){
+//House Delete
+module.exports.DeleteHouse = function(req,res){
 
-            let RoleId =req.body.RoleId
-            roleModel.deleteOne({_id:RoleId},function(err,data){
+            let HouseId =req.body.HouseId
+            roleModel.deleteOne({_id:HouseId},function(err,data){
                     if(err){
                         res.json({
                             msg:"SMW",
@@ -84,7 +84,7 @@ module.exports.DeleteRole = function(req,res){
                         })
                     }else{
                         res.json({
-                            msg:"Role Deleted",
+                            msg:"House Deleted",
                             status:200,
                             data:data
                         })

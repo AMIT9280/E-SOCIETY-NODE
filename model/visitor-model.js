@@ -17,7 +17,7 @@ const VisitorSchema = new mongoose.Schema({
         required:true
     },
     arrivingTime:{
-        type:TimeRanges,
+        type:Number,
         required:true
     },
     isAllowed:{

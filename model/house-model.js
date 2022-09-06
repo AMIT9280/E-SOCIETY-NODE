@@ -18,4 +18,4 @@ const VisitorSchema = new mongoose.Schema({
     }
      
 });
-module.exports = mongoose.model("Visitor",VisitorSchema);
+module.exports = mongoose.model("House",VisitorSchema);

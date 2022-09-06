@@ -3,6 +3,9 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema;
 const UserSchema = new mongoose.Schema({
+
+   
+   
     firstName:{
         type:String,
         required:true
@@ -10,11 +13,12 @@ const UserSchema = new mongoose.Schema({
     lastName:{
         type:String
         ,required:true
-     },
+    },
     Dob:{
         type:Date,
         required:true     
     },
+    
     gender:{
         type:String,
         required:true
@@ -31,11 +35,13 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    role:{
+    confirmPass:{
+        type:String,
+        required:true
+    },role:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Role"
+        ref:"role"
     }
-     
 
 });
 module.exports = mongoose.model("User",UserSchema);

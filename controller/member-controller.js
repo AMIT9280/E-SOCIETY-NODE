@@ -7,15 +7,11 @@ module.exports.AddMember = function (req, res) {
 
     let Member = new memberModel({
         houseId: req.body.houseId,
-        roleId: req.body.roleId,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        memberName: req.body.memberName,
         Dob: req.body.Dob,
         age: req.body.age,
         gender: req.body.gender,
         contact: req.body.contact,
-        email: req.body.email,
-        password: req.body.houseId
     })
 
     Member.save(function (err, data) {
@@ -38,7 +34,7 @@ module.exports.AddMember = function (req, res) {
 //Get All Member
 module.exports.getAllMember= function (req, res) {
 
-    memberModel.find(function (err, data) {
+    memberModel.find().populate("House").exec(function (err, data) {
 
         if (err) {
             res.json({
@@ -58,16 +54,15 @@ module.exports.getAllMember= function (req, res) {
 
 //member Update
 module.exports.UpdateMember = function (req, res) {
-    let userId = req.body.userId
-    let firstName = req.body.firstName
-    let lastName = req.body.lastName
+    let memberId = req.body.memberId
+    let memberName =  req.body.memberName
     let Dob = req.body.Dob
     let age = req.body.age
     let gender = req.body.gender
     let contact = req.body.contact
     let email = req.body.email
 
-    memberModel.updateOne({ _id: userId }, {firstName:firstName,lastName:lastName,Dob:Dob,age:age,gender:gender,contact:contact,email:email}, function (err, data) {
+    memberModel.updateOne({ _id: memberId }, {memberName:memberName,Dob:Dob,age:age,gender:gender,contact:contact,email:email}, function (err, data) {
         if (err) {
             res.json({
                 msg: "SMW",
@@ -88,8 +83,8 @@ module.exports.UpdateMember = function (req, res) {
 //Member Delete
 module.exports.DeleteMember = function (req, res) {
 
-    let UserId = req.body.UserId
-    memberModel.deleteOne({ _id: UserId }, function (err, data) {
+    let memberId = req.body.memberId
+    memberModel.deleteOne({ _id: memberId }, function (err, data) {
         if (err) {
             res.json({
                 msg: "SMW",

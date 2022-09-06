@@ -5,7 +5,7 @@ const RoleSchema = new mongoose.Schema({
             
             RoleName:{
                 type:String,
-                require
+                required:true
            
             }       
 });

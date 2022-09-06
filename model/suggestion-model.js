@@ -19,7 +19,7 @@ const SuggestionSchema = new mongoose.Schema({
         type:Date,
         required:true
     },
-    suggesitons:{
+    suggestions:{
         type:String,
         required:true
     },

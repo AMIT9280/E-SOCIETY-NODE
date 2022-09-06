@@ -12,11 +12,11 @@ const StaffTableSchema = new mongoose.Schema({
         required:true
     },
     entryTime:{
-        type:TimeRanges,
+        type:Number,
        required:true
     },
     exitTime:{
-        type:TimeRanges,
+        type:Number,
         required:true
     },
     contactNo:{
