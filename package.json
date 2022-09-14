@@ -1,4 +1,8 @@
 {
+  "scripts": {
+   "start":"node index.js"
+  }
+,
   "dependencies": {
     "angular-cors": "^1.0.0",
     "angular-module-core": "^1.2.19",
