@@ -4,11 +4,12 @@ const roleModel = require("../model/role-model")
 //Add Role
 module.exports.AddRole = function(req,res){
 
-        console.log( req.body.RoleName );
+       let  RoleName = req.body.RoleName
         let Role = new roleModel({
-            RoleName: req.body.RoleName 
+            RoleName: RoleName
+          
         })
-
+       
         Role.save(function(err,data ){
             if(err){
                 res.json({

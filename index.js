@@ -21,13 +21,33 @@ app.use(cors())
 app.use(express.urlencoded({extended:true}))
 
 //DataBase Connection
-mongoose.connect('mongodb://localhost:27017/E-SOCIETY',function(err){
-        if(err){
-                console.log("DB not connected....");
-        }else{
-            console.log("DB Connected....");
-        }
-})
+// mongoose.connect('mongodb+srv://amit:Amit@1324@cluster0.sxuwjh9.mongodb.net/?retryWrites=true&w=majority',function(err){
+//         if(err){
+//                 console.log("DB not connected....");
+//                 console.log(err);
+//         }else{
+//             console.log("DB Connected....");
+//         }
+// })
+
+mongoose.connect(
+    'mongodb+srv://amit:Amit1324@cluster0.sxuwjh9.mongodb.net/?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      socketTimeoutMS:30000,
+      keepAlive:true,
+    },
+    (err)=>{
+      if(err){
+        console.log(err);
+      } else{
+        console.log("Db Connect");
+      }  
+    }
+
+  );
+
 
 //Api's
 
@@ -115,7 +135,7 @@ app.delete("/house/:houseId",houseController.DeleteHouse)
 //server port
 app.listen(8080,function(err){
     if(!err){
-        console.log("Server Started 3000...");
+        console.log("Server Started 8080...");
     }else{
         console.log("Server Error SMW");  
     }
