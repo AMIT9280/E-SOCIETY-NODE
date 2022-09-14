@@ -133,8 +133,9 @@ app.delete("/house/:houseId",houseController.DeleteHouse)
 
 
 //server port
-const PORT = 8080
-app.listen(PORT,function(err){
+const PORT = 3000
+const LOCAL_ADDRESS = "0.0.0.0"
+app.listen(PORT,LOCAL_ADDRESS,function(err){
     if(!err){
         console.log("Server Started 8080...");
     }else{
