@@ -63,7 +63,7 @@ app.get("/user",userController.getAllUsers)
 app.put("/user/:uId",userController.UpdateUser)
 app.delete("/user/:UserId",userController.DeleteUser)
 app.get("/user/:uId",userController.getUserById)
-
+app.post("/login",userController.login)
  
 //add Developer
 app.post("/signup",userController.AddDeveloper)

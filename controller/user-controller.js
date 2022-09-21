@@ -131,7 +131,7 @@ module.exports.UpdateUser = function (req, res) {
 module.exports.getUserById = function (req, res) {
 
     let UserId = req.params.uId
-    userModel.findById({_id:UserId},function (err, data) {
+    userModel.findById({ _id: UserId }, function (err, data) {
 
         if (err) {
 
@@ -179,8 +179,8 @@ module.exports.login = function (req, res) {
     console.log(param_password);
     let isCorrect = false;
 
-    userModel.findOne({ email: param_email}, function (err, data) {
-        if (this.email == param_email ) {
+    userModel.findOne({ email: param_email }, function (err, data) {
+        if (this.email == param_email) {
 
             isCorrect = true
         }
@@ -189,7 +189,7 @@ module.exports.login = function (req, res) {
             res.json({
                 msg: "invelid Credentials...",
                 status: -1,
-                data:err
+                data: err
             })
         } else {
 
@@ -197,3 +197,36 @@ module.exports.login = function (req, res) {
         }
     })
 }
+//Login
+module.exports.login = function (req, res) {
+
+    let param_email = req.params.email
+    let param_password = req.params.password
+    console.log(param_email);
+    console.log(param_password);
+    let isCorrect = false;
+
+    userModel.findOne({ email: param_email }).populate("role").exec(function (err, data) {
+        console.log(data);
+        if (data) {
+            let ans = bcrypt.compareSync(param_password, data.password)
+            if (ans == true) {
+                isCorrect = true
+                console.log(data);
+            }
+        }
+        if (isCorrect == false) {
+
+            res.json({
+                msg: "invelid Credentials...",
+                status: -1,
+                data: req.body
+            })
+        } else {
+
+            res.json({ msg: "login...", status: 200, data: data })
+        }
+    })
+}
+
+
