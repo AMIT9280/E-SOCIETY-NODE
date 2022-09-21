@@ -200,22 +200,14 @@ module.exports.login = function (req, res) {
 //Login
 module.exports.login = function (req, res) {
 
-    let param_email = req.body.email
-    let param_password = req.body.password
+    let param_email = req.params.email
+    let param_password = req.params.password
     console.log(param_email);
     console.log(param_password);
-    let isCorrect = false;
+   
 
-    userModel.findOne({ email: param_email }).populate("role").exec(function (err, data) {
-        console.log(data);
-        if (data) {
-            let ans = bcrypt.compareSync(param_password, data.password)
-            if (ans == true) {
-                isCorrect = true
-                console.log(data);
-            }
-        }
-        if (isCorrect == false) {
+    userModel.findOne({ email: param_email }).populate("Role").exec(function (err, data) {
+        if (err) {
 
             res.json({
                 msg: "invelid Credentials...",
