@@ -200,8 +200,8 @@ module.exports.login = function (req, res) {
 //Login
 module.exports.login = function (req, res) {
 
-    let param_email = req.params.email
-    let param_password = req.params.password
+    let param_email = req.body.email
+    let param_password = req.body.password
     console.log(param_email);
     console.log(param_password);
     let isCorrect = false;
