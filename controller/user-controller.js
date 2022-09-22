@@ -200,19 +200,19 @@ module.exports.login = function (req, res) {
 //Login
 module.exports.login = function (req, res) {
 
-    let param_email = req.params.email
-    let param_password = req.params.password
+    let param_email = req.body.email
+    let param_password = req.body.password
     console.log(param_email);
     console.log(param_password);
    
 
-    userModel.find({ email: param_email ,password:param_password}).populate("Role").exec(function (err, data) {
-        if (err) {
+    userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
+        if (email != param_email) {
 
             res.json({
                 msg: "invelid Credentials...",
                 status: -1,
-                data: req.body
+                data: err
             })
         } else {
 
