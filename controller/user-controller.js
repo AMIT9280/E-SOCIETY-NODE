@@ -206,7 +206,7 @@ module.exports.login = function (req, res) {
     console.log(param_password);
    
 
-    userModel.findOne({ email: param_email }).populate("Role").exec(function (err, data) {
+    userModel.find({ email: param_email ,password:param_password}).populate("Role").exec(function (err, data) {
         if (err) {
 
             res.json({
