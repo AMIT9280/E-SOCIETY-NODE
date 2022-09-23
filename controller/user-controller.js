@@ -206,7 +206,7 @@ module.exports.login = function (req, res) {
     console.log(param_password);
     let isCorrect = false;
 
-    userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
+    userModel.findOne({ email: param_email}).populate("User").exec(function (err, data) {
         if (this.email == param_email) {
 
                         isCorrect = true
