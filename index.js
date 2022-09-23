@@ -134,7 +134,7 @@ app.delete("/house/:houseId",houseController.DeleteHouse)
 
 //server port
 const PORT = process.env.PORT
-app.listen(PORT
+app.listen(3100
   
   
   ,function(err){

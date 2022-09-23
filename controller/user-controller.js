@@ -206,23 +206,19 @@ module.exports.login = function (req, res) {
     console.log(param_password);
     let isCorrect = false;
 
-    userModel.findOne({ email: param_email}).populate("User").exec(function (err, data) {
-        if (this.email == param_email) {
+    userModel.find({ email: param_email,password:param_password }, function (err, data) {
+        
+        if (err) {
+            res.json({
+                msg: "invelid Credentials...",
+                status: -1,
+                data: err
+            })
+        } else {
 
-                        isCorrect = true
-                    }
-                    if (isCorrect == false) {
-            
-                        res.json({
-                            msg: "invelid Credentials...",
-                            status: -1,
-                            data: err
-                        })
-                    } else {
-            
-                        res.json({ msg: "login...", status: 200, data: data })
-                    }
-                })
+            res.json({ msg: "login...", status: 200, data: data })
+        }
+    })
 }
 
 
