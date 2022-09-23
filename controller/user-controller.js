@@ -198,27 +198,27 @@ module.exports.login = function (req, res) {
     })
 }
 //Login
-module.exports.login = function (req, res) {
+// module.exports.login = function (req, res) {
 
-    let param_email = req.body.email
-    let param_password = req.body.password
-    console.log(param_email);
-    console.log(param_password);
+//     let param_email = req.body.email
+//     let param_password = req.body.password
+//     console.log(param_email);
+//     console.log(param_password);
    
 
-    userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
-        if (err) {
+//     userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
+//         if (err) {
 
-            res.json({
-                msg: "invelid Credentials...",
-                status: -1,
-                data: err
-            })
-        } else {
+//             res.json({
+//                 msg: "invelid Credentials...",
+//                 status: -1,
+//                 data: err
+//             })
+//         } else {
 
-            res.json({ msg: "login...", status: 200, data: data })
-        }
-    })
-}
+//             res.json({ msg: "login...", status: 200, data: data })
+//         }
+//     })
+// }
 
 
