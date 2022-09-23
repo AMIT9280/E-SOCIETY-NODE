@@ -170,44 +170,21 @@ module.exports.DeleteUser = function (req, res) {
 }
 
 //login
-module.exports.login = function (req, res) {
-
-    let param_email = req.params.email
-    let param_password = req.params.password
-
-    console.log(param_email);
-    console.log(param_password);
-    let isCorrect = false;
-
-    userModel.findOne({ email: param_email }, function (err, data) {
-        if (this.email == param_email) {
-
-            isCorrect = true
-        }
-        if (isCorrect == false) {
-
-            res.json({
-                msg: "invelid Credentials...",
-                status: -1,
-                data: err
-            })
-        } else {
-
-            res.json({ msg: "login...", status: 200, data: data })
-        }
-    })
-}
-//Login
 // module.exports.login = function (req, res) {
 
-//     let param_email = req.body.email
-//     let param_password = req.body.password
+//     let param_email = req.params.email
+//     let param_password = req.params.password
+
 //     console.log(param_email);
 //     console.log(param_password);
-   
+//     let isCorrect = false;
 
-//     userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
-//         if (err) {
+//     userModel.findOne({ email: param_email }, function (err, data) {
+//         if (this.email == param_email) {
+
+//             isCorrect = true
+//         }
+//         if (isCorrect == false) {
 
 //             res.json({
 //                 msg: "invelid Credentials...",
@@ -220,5 +197,28 @@ module.exports.login = function (req, res) {
 //         }
 //     })
 // }
+//Login
+module.exports.login = function (req, res) {
+
+    let param_email = req.body.email
+    let param_password = req.body.password
+    console.log(param_email);
+    console.log(param_password);
+   
+
+    userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
+        if (err) {
+
+            res.json({
+                msg: "invelid Credentials...",
+                status: -1,
+                data: err
+            })
+        } else {
+
+            res.json({ msg: "login...", status: 200, data: data })
+        }
+    })
+}
 
 
