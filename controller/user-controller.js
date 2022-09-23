@@ -207,7 +207,7 @@ module.exports.login = function (req, res) {
    
 
     userModel.findOne({ email: param_email}).populate("Role").exec(function (err, data) {
-        if (email != param_email) {
+        if (err) {
 
             res.json({
                 msg: "invelid Credentials...",
