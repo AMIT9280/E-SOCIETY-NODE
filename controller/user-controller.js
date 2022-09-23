@@ -202,15 +202,16 @@ module.exports.login = function (req, res) {
 
     let param_email = req.body.email
     let param_password = req.body.password
+    
     console.log(param_email);
     console.log(param_password);
-    let isCorrect = false;
+    
 
     userModel.find({ email: param_email,password:param_password }, function (err, data) {
         
         if (err) {
             res.json({
-                msg: "invelid Credentials...",
+                msg: "invalid Credentials...",
                 status: -1,
                 data: err
             })
