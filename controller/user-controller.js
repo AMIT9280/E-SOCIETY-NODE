@@ -209,15 +209,15 @@ module.exports.login = function (req, res) {
 
     userModel.find({ email: param_email, password: param_password }, function (err, data) {
         console.log(data);
-        if (data) {
-            
-                res.json({ msg: "login...", status: 200, data: data })
+        if (err) {
+            res.json({
+                msg: "invalid Credentials...",
+                status: -1,
+                data: err
+            })
+                
             } else {
-                res.json({
-                    msg: "invalid Credentials...",
-                    status: -1,
-                    data: err
-                })
+                res.json({ msg: "login...", status: 200, data: data })
                
             }
         });
