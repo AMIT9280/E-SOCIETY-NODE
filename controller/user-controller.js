@@ -202,24 +202,26 @@ module.exports.login = function (req, res) {
 
     let param_email = req.body.email
     let param_password = req.body.password
-    
+
     console.log(param_email);
     console.log(param_password);
+
+
+    userModel.find({ email: param_email, password: param_password }, function (err, data) {
+        console.log(data);
+        if (data) {
+            
+                res.json({ msg: "login...", status: 200, data: data })
+            } else {
+                res.json({
+                    msg: "invalid Credentials...",
+                    status: -1,
+                    data: err
+                })
+               
+            }
+        });
     
-
-    userModel.find({ email: param_email,password:param_password }, function (err, data) {
-        
-        if (email != param_email && password != param_password) {
-            res.json({
-                msg: "invalid Credentials...",
-                status: -1,
-                data: err
-            })
-        } else {
-
-            res.json({ msg: "login...", status: 200, data: data })
-        }
-    })
 }
 
 
