@@ -200,27 +200,38 @@ module.exports.DeleteUser = function (req, res) {
 //Login
 module.exports.login = function (req, res) {
 
-    let param_email = req.body.email
-    let param_password = req.body.password
-
-    console.log(param_email);
-    console.log(param_password);
-
-
-    userModel.find({ email: param_email, password: param_password }, function (err, data) {
-        console.log(data);
+    
+    userModel.findOne({email:req.body.email,password:req.body.password},(err,data)=>{
         if (err) {
             res.json({
-                msg: "invalid Credentials...",
+                msg: "Error",
                 status: -1,
-                data: err
+                data: req.body
             })
                 
             } else {
-                res.json({ msg: "login...", status: 200, data: data })
-               
+                if(data == undefined || data == null){
+                    res.json({ msg: "Invalid Credentials", status: -1, data: data })
+                }else{
+                    res.json({ msg: "login...", status: 200, data: data })
+                }
             }
-        });
+    })
+
+    // userModel.find({ email: param_email, password: param_password }, function (err, data) {
+    //     console.log(data);
+    //     if (err) {
+    //         res.json({
+    //             msg: "invalid Credentials...",
+    //             status: -1,
+    //             data: err
+    //         })
+                
+    //         } else {
+    //             res.json({ msg: "login...", status: 200, data: data })
+               
+    //         }
+    //     });
     
 }
 
